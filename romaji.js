@@ -2,6 +2,7 @@
 
 let singleCharacters = {"n":"ん","a":"あ","i":"い","u":"う","e":"え","o":"お","ka":"か","ki":"き","ku":"く","ke":"け","ko":"こ","sa":"さ","shi":"し","su":"す","se":"せ","so":"そ","ta":"た","chi":"ち","tsu":"つ","te":"て","to":"と","na":"な","ni":"に","nu":"ぬ","ne":"ね","no":"の","ha":"は","hi":"ひ","fu":"ふ","he":"へ","ho":"ほ","ma":"ま","mi":"み","mu":"む","me":"め","mo":"も","ya":"や","yu":"ゆ","yo":"よ","ra":"ら","ri":"り","ru":"る","re":"れ","ro":"ろ","wa":"わ","wo":"を","ga":"が","gi":"ぎ","gu":"ぐ","ge":"げ","go":"ご","za":"ざ","ji":"じ","zu":"ず","ze":"ぜ","zo":"ぞ","da":"だ","di":"ぢ","du":"づ","de":"で","do":"ど","ba":"ば","bi":"び","bu":"ぶ","be":"べ","bo":"ぼ","pa":"ぱ","pi":"ぴ","pu":"ぷ","pe":"ぺ","po":"ぽ"};
 let specialDigraphs = {"ju":"じゅ","ja":"じゃ","jo":"じょ","shu":"しゅ","sha": "しゃ","sho":"しょ","chu":"ちゅ","cha":"ちゃ","cho":"ちょ"};
+let digraphableVowels = {'a': 'ゃ', 'u': 'ゅ', 'o': 'ょ'};
 const smallTsu = 'っ';
 let allCharacterMappings = Object.assign({}, singleCharacters, specialDigraphs);
 
@@ -42,9 +43,8 @@ const convertRomajiToHiragana = function(string, options) {
     if (string[1] !== 'y') {
       return false;
     }
-    let vowels = {'a': 'ゃ', 'u': 'ゅ', 'o': 'ょ'};
     let thirdChar = string[2];
-    let specialChar = vowels[thirdChar];
+    let specialChar = digraphableVowels[thirdChar];
     if (specialChar) {
       return hiragana + specialChar;
     }
