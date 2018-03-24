@@ -15,12 +15,12 @@ const convertRomajiToHiragana = function(string, options) {
   let length = string.length;
   let isFirstSyllable = true;
   let geminate, digraph;
+  let geminatePairs = { "kk":true, "ss":true, "tt":true, "pp":true };
 
   const checkForGeminates = function(string) {
     if (isFirstSyllable) {
       return false;
     }
-    let geminatePairs = { "kk":true, "ss":true, "tt":true, "pp":true };
     let firstTwoChars = string.substr(0, 2)
     let nextChars = string.substring(1);
     if (geminatePairs[firstTwoChars] && hash[nextChars]) {
@@ -39,10 +39,10 @@ const convertRomajiToHiragana = function(string, options) {
     if (!hiragana) {
       return false;
     }
-    let vowels = {'a': 'ゃ', 'u': 'ゅ', 'o': 'ょ'};
     if (string[1] !== 'y') {
       return false;
     }
+    let vowels = {'a': 'ゃ', 'u': 'ゅ', 'o': 'ょ'};
     let thirdChar = string[2];
     let specialChar = vowels[thirdChar];
     if (specialChar) {
